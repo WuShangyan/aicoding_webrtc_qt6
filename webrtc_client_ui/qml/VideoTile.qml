@@ -4,53 +4,26 @@ import QtQuick.Controls
 Rectangle {
     id: tile
     required property int channelNumber
+    required property bool alternate
     objectName: "videoTile" + channelNumber
-    color: "#1a2029"
-    radius: 10
-    border.color: "#2b3543"
+    color: alternate ? "#626e7d" : "#7b8593"
     clip: true
 
-    Item {
-        anchors.fill: parent
-        anchors.margins: 10
-        Rectangle {
-            anchors.centerIn: parent
-            width: Math.min(parent.width, parent.height * 16 / 9)
-            height: width * 9 / 16
-            color: "#141a22"
-            radius: 5
-            Column {
-                anchors.centerIn: parent
-                spacing: 8
-                Image {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    source: "../icons/video.svg"
-                    width: 30; height: 30
-                    opacity: 0.38
-                }
-                Label {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: "暂无视频"
-                    color: "#728198"
-                    font.pixelSize: 12
-                }
-            }
-        }
-    }
-    Label {
+    Rectangle {
         anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: 14
-        text: "视频通道 " + String(tile.channelNumber).padStart(2, "0")
-        color: "#bac6d6"
-        font.pixelSize: 12
-    }
-    Row {
-        anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.margins: 13
-        spacing: 6
-        Rectangle { width: 5; height: 5; radius: 3; color: "#667386"; anchors.verticalCenter: parent.verticalCenter }
-        Label { text: "未连接"; color: "#7d8a9d"; font.pixelSize: 10 }
+        width: Math.max(94, channel.implicitWidth + 24)
+        height: 27
+        color: "#15191f"
+
+        Label {
+            id: channel
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.verticalCenter: parent.verticalCenter
+            text: tile.channelNumber === 1 ? "摄像头" : "远程视频"
+            color: "#ffffff"
+            font.pixelSize: 13
+        }
     }
 }

@@ -16,6 +16,7 @@ qt_add_qml_module(webrtc_client
         qml/VideoTile.qml
         qml/ActionButton.qml
         qml/ControlBar.qml
+        qml/SettingsDialog.qml
     RESOURCES
         icons/devices.svg
         icons/speaker.svg
